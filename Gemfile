@@ -77,4 +77,7 @@ gem 'faker', '~> 3.3', groups: %i[development test]
 gem 'database_cleaner-active_record', '~> 2.1', group: :test
 
 gem 'pg', '~> 1.1'
+
 gem 'rubocop', '~> 1.63', group: :development
+
+gem 'view_component'
