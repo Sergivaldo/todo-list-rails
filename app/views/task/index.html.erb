@@ -1,0 +1,74 @@
+<%= render (Container::ContainerComponent.new(sb_index:0)) do%>
+  <%= render (Content::ContentComponent.new(title:"Tarefas")) do%>
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-2">
+          <span class="text-2xl">✔️</span>
+          <h1 class="text-2xl font-medium"> Quadro de tarefas</h1>
+        </div>
+        <div class="flex items-center border-b pb-3 justify-between text-slate-700">
+          <div class="flex gap-2 items-center text-xs font-medium py-2 px-4 border border-slate-300 rounded-lg">
+            <%= render Icon::IconsComponent.new(icon:'board',stroke:2.8) %>
+            <b>Kanban</b>
+          </div>
+          <div class="flex gap-3 items-center relative">
+            <%= render Task::HelpPopoverComponent.new %>
+            <%= render Icon::IconsComponent.new(icon:'filter',stroke:2.8) %>
+            <%= render Icon::IconsComponent.new(icon:'sort',stroke:2.8) %>
+            <%= form_with(url:'#', method: :get, data:{turbo_frame:''}) do |f|%>
+              <div class="flex gap-1 items-center border border-slate-300 rounded-lg pl-2 pr-1 h-8 w-fit ">
+                <%= button_tag do%>
+                  <%= render Icon::IconsComponent.new(icon:'search') %>
+                <% end %>
+                <%= f.text_field :query, placeholder:"Insira uma palavra-chave...", class:"h-full text-xs font-medium border-none focus:ring-0"%>
+              </div>
+            <% end %>
+            <%= button_tag class:"text-xs py-2 px-4 text-white font-medium bg-slate-700 rounded-lg drop-shadow-md" do%>
+                <span>Nova tarefa</span>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-[calc(100vh-14rem)] mt-3" data-controller="dialog" data-action="click->dialog#backdropClose">
+      
+        <div class="grid grid-cols-11 justify-center h-full gap-4 text-xs">
+          <%= turbo_frame_tag 'tasks_to_do', class:"col-span-3" do%>
+            <%= render (Task::TaskListComponent.new(
+                    title:'Pendente',
+                    tasks:@tasks.select{|task| task.status == 'to_do'},
+                    title_style:'to-do',
+                    task_status:"to_do")
+                  )
+                %>
+          <% end %>
+          <%= turbo_frame_tag 'tasks_doing', class:"col-span-3 h-full" do%>
+            <%= render (Task::TaskListComponent.new(
+                    title:'Executando',
+                    tasks:@tasks.select{|task| task.status == 'doing'},
+                    title_style:'bg-indigo-50 border-indigo-200 text-indigo-700',
+                    task_status:"doing")
+                  )
+                %>   
+          <% end %>
+          <%= turbo_frame_tag 'tasks_done', class:"col-span-3" do%>
+            <%= render (Task::TaskListComponent.new(
+                    title:'Concluído',
+                    tasks:@tasks.select{|task| task.status == 'done'},
+                    title_style:'bg-emerald-50 border-emerald-200 text-emerald-700',
+                    task_status:"done")
+                  )
+                %>
+          <% end %>
+          <div class="col-span-2 p-4 border-l border-slate-200"></div>
+        
+      </div>
+      
+    </div>
+  </div>
+<% end %>
+<% end %>
+
+<%= turbo_frame_tag "edit_modal" do%>
+
+<% end %>
