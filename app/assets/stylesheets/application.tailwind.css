@@ -2,12 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+/* global.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
 
 
 @layer components {
+  .task{
+	@apply px-2 py-3 border border-slate-300 bg-white text-sm text-slate-700 font-medium rounded-lg 
+	flex justify-between w-full;
+  }
   .sidebar-item {
     @apply flex gap-4 px-2 py-1 items-center text-sm font-medium text-slate-600;
+  }
+  .to-do{
+	@apply bg-orange-50 border-orange-200 text-orange-700;
+  }
+
+  .badge{
+	@apply flex gap-8 px-2 w-fit py-1 border rounded-lg font-medium text-xs;
   }
 }
 
 
+@import 'actiontext.css';
