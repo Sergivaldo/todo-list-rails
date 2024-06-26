@@ -72,11 +72,9 @@ class TasksController < ApplicationController
   end
 
   def move_column_and_position
-    puts "old position #{@task.position}"
     return unless @task.update(status: params[:status])
 
     @task.insert_at(params[:position].to_i)
-    puts "new position #{@task.position}"
     head :no_content
   end
 
