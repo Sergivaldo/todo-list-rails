@@ -1,0 +1,18 @@
+<div data-controller="dropdown" class="relative" id=<%= "btt_#{@task_status}" %>>
+  <%= link_to task_new_path(@task_status) ,class:"flex gap-3 text-sm font-medium text-slate-900", data:{action:"dropdown#toggle click@window->dropdown#hide", turbo_stream:true} do%>
+    <%= render (Icon::IconsComponent.new(icon:'plus')) %>
+    <p>Adicionar item</p>
+  <% end %>
+  <div
+      data-dropdown-target="menu"
+      class="hidden transition transform origin-top-right absolute left-0 bottom-0 w-full"
+      data-transition-enter-from="opacity-0 scale-95"
+      data-transition-enter-to="opacity-100 scale-100"
+      data-transition-leave-from="opacity-100 scale-100"
+      data-transition-leave-to="opacity-0 scale-95"
+    >
+    <%= helpers.turbo_frame_tag "new_#{@task_status}" do%>
+
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="">
+  <div class="flex gap-4 text-sm items-center h-fit">
+    <div class="bg-sky-900 font-semibold w-fit h-fit py-1 px-2 rounded-full text-white">U</div>
+    <div class="flex flex-col">
+      <span class="font-medium text-slate-900">Usuário</span>
+      <span class="text-stone-600">usuario@email.com</span>
+    </div>
+  </div>
+  <nav class="mt-6">
+    <ul>
+      <li class="sidebar-item">
+        <%= render Icon::IconsComponent.new(icon:'home') %>
+        <span>Início</span>
+      </li>
+      <li class="sidebar-item mt-1">
+        <%= render Icon::IconsComponent.new(icon:'board') %>
+        <span>Quadros</span>
+      </li>
+      <div class="flex flex-col mt-4 gap-2">
+        <div class="flex justify-between px-2 font-medium text-slate-500 items-center">
+          <span class="inline-block py-1 text-sm">Meus quadros</span>
+          <%= button_tag class:"p-1 flex items-center" do%>
+              <%= render Icon::IconsComponent.new(icon:'plus') %>
+            <% end %>
+        </div>
+        <li class="sidebar-item">
+          <% unless @boards.nil? %>
+            <% @boards.each do |board| %>
+              <% board %>
+            <% end %>
+          <% end %>
+        </li>
+      </div>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,14 @@
+<div class="flex flex-col gap-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl relative max-h-full" >
+  <div class="flex gap-2 items-center justify-between">
+    <%= render Shared::BadgeComponent.new(style:@title_style, text:@title) %>
+    <span class="block py-[2px] px-[6px]  rounded-full bg-stone-300 font-semibold text-slate-700" id=<%= "counter_#{@task_status}" %>><%= @tasks.length %></span>
+  </div>
+  <div id=<%= @id %> data-dropdown-position-target="list" class="pr-2 flex flex-col gap-2 overflow-y-scroll scroll-smooth " data-controller="sortable" >
+    <% @tasks.each do |task| %>
+      <%= render Task::TaskListItemComponent.new(task:task) %>
+    <% end %>
+  </div>
+  <div class="flex flex-col gap-2" id=<%= "btt_#{@task_status}" %>>
+    <%= render Task::NewItemDropdownComponent.new(task_status:@task_status) %>
+  </div>
+</div>

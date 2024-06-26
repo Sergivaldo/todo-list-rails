@@ -1,0 +1,11 @@
+<div data-controller="popover">
+  <div class="relative cursor-pointer" data-action="mouseenter->popover#show mouseleave->popover#hide">
+    <%= render Icon::IconsComponent.new(icon:'help',size:18, stroke:2.5) %>
+  </div>
+  <template data-popover-target="content">
+    <div class=" p-3 flex flex-col text-xs text-slate-800 gap-1 absolute z-40 right-0 drop-shadow-md w-max bg-white rounded-lg" data-popover-target="card">
+      <p >Clique no botão <span class="font-semibold">+ adicionar item</span> para adicionar uma tarefa a coluna.</p>
+      <p class="flex gap-1">Clique no botão <span><%= render Icon::IconsComponent.new(icon:'filter',stroke:3) %></span> para filtrar as tarefas pesquisadas</p>
+    </div>
+  </template>
+</div>

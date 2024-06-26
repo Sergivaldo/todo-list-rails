@@ -1,0 +1,48 @@
+<div id=<%= "task_#{@task.id}" %> data-controller="dropdown"  class="task group" data-url="<%= move_column_and_position_task_path(@task.id)%>">
+  <p class="line-clamp-4  leading-5 max-h-20 break-words "><%= @task.title %></p>
+  <%= button_tag class:"flex gap-3 text-slate-900 opacity-0 group-hover:opacity-100", data:{action:"dropdown#toggle click@window->dropdown#hide click->dropdown-position#setPosition"} do%>
+    <%= render (Icon::IconsComponent.new(icon:'more')) %>
+  <% end %>
+  <div
+      data-dropdown-target="menu"
+      data-dropdown-position-target="menu"
+      class="hidden transition transform origin-center left-48 z-10 absolute w-full"
+      data-transition-enter-from="opacity-0 scale-95"
+      data-transition-enter-to="opacity-100 scale-100"
+      data-transition-leave-from="opacity-100 scale-100"
+      data-transition-leave-to="opacity-0 scale-95"
+    >
+    <ul class="flex flex-col gap-4 bg-white drop-shadow-2xl rounded-lg p-3 w-fit text-xs">
+      <div class="flex flex-col gap-2">
+        <li class="hover:bg-stone-100 hover:font-semibold rounded-md cursor-pointer">
+          <%= link_to task_path(@task), data: {turbo_frame:"task_modal"},class:"flex gap-2 items-center p-1" do%>
+            <%= render (Icon::IconsComponent.new(icon:'eye', size:14)) %>
+            <p >Visualizar tarefa</p>
+          <% end %>
+        </li>
+        <li class="rounded-md cursor-pointer">
+          <%= render Task::MoveToColumnDropDownComponent.new(task:@task) %>
+        </li>
+        <li class="hover:bg-stone-100 hover:font-semibold rounded-md cursor-pointer">
+          <%= link_to move_up_task_path(@task),data:{turbo_prefetch:false, turbo_frame:"tasks_#{@task.status}"},class:"flex gap-2 items-center p-1" do%>
+            <%= render (Icon::IconsComponent.new(icon:'arrow-up', size:14)) %>
+            <p>Mover para cima</p>
+          <% end %>
+        </li>
+        <li class="hover:bg-stone-100 hover:font-semibold rounded-md cursor-pointer">
+          <%= link_to move_down_task_path(@task),data:{turbo_prefetch:false, turbo_frame:"tasks_#{@task.status}"},class:"flex gap-2 items-center p-1" do%>
+            <%= render (Icon::IconsComponent.new(icon:'arrow-down', size:14)) %>
+            <p>Mover para baixo</p>
+          <% end %>
+        </li>
+        <li class=" hover:bg-stone-100 hover:font-semibold rounded-md cursor-pointer">
+          <%= render Task::DeleteDropdownComponent.new(task:@task) %>
+        </li>
+      </div>
+      <li class="font-normal text-stone-500 border-t pt-2">
+        <p >Ultima atualização em:</p>
+        <p ><%= @task.updated_at %></p>
+      </li>
+    </ul>
+  </div>
+</div>
