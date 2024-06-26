@@ -1,0 +1,10 @@
+<%= turbo_stream.remove "task_#{@task.id}"%>
+<%= turbo_stream.replace "counter_#{@old_status}" do%>
+  <span class="block py-[2px] px-[6px]  rounded-full bg-stone-300 font-semibold text-slate-700" id=<%= "counter_#{@old_status}" %>><%= @old_list_counter %></span>
+<% end %>
+<%= turbo_stream.append "#{@task.status}" do%>
+  <%= render Task::TaskListItemComponent.new(task:@task) %>
+<% end %>
+<%= turbo_stream.replace "counter_#{@task.status}" do%>
+  <span class="block py-[2px] px-[6px]  rounded-full bg-stone-300 font-semibold text-slate-700" id=<%= "counter_#{@task.status}" %>><%= @new_list_counter %></span>
+<% end %>

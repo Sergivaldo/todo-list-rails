@@ -8,6 +8,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.field_with_errors{
+  width:100%;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	width: 10px;
@@ -45,6 +49,10 @@
 
   .badge{
 	@apply flex gap-8 px-2 w-fit py-1 border rounded-lg font-medium text-xs;
+  }
+
+  .drop-down-top{
+    @apply;
   }
 }
 

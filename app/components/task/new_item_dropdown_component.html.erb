@@ -1,5 +1,5 @@
-<div data-controller="dropdown" class="relative">
-  <%= link_to task_new_path(@task_status) ,class:"flex gap-3 text-sm font-medium text-slate-900", data:{action:"dropdown#toggle click@window->dropdown#hide", turbo_frame:"new_#{@task_status}"} do%>
+<div data-controller="dropdown" class="relative" id=<%= "btt_#{@task_status}" %>>
+  <%= link_to task_new_path(@task_status) ,class:"flex gap-3 text-sm font-medium text-slate-900", data:{action:"dropdown#toggle click@window->dropdown#hide", turbo_stream:true} do%>
     <%= render (Icon::IconsComponent.new(icon:'plus')) %>
     <p>Adicionar item</p>
   <% end %>

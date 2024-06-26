@@ -1,0 +1,17 @@
+<div data-controller="dropdown" class="relative">
+  <%= button_tag class:"flex gap-2 items-center p-1 text-red-800", data:{action:"dropdown#toggle click@window->dropdown#hide"} do%>
+    <%= render (Icon::IconsComponent.new(icon:'trash', size:14)) %>
+    <p>Deletar</p>
+  <% end %>
+  <div
+      data-dropdown-target="menu"
+      class="flex flex-col gap-3 rounded-lg hidden transition transform origin-top-right absolute drop-shadow-lg p-3 left-28 bottom-0 w-full bg-white"
+      data-transition-enter-from="opacity-0 scale-95"
+      data-transition-enter-to="opacity-100 scale-100"
+      data-transition-leave-from="opacity-100 scale-100"
+      data-transition-leave-to="opacity-0 scale-95"
+    >
+    <p class="text-center">Tem certeza que deseja deletar?</p>
+    <%= link_to 'Deletar', task_path(@task), data:{turbo_method: :delete}, class:"p-1 rounded-lg bg-red-300 text-center text-black font-semibold" %>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "new_#{@task.status}" do%>
+  <%= turbo_frame_tag "new_#{@task.status}" do%>
+    <%= render 'small_form', locals:{task:@task} %>
+  <% end %>
+<% end %>

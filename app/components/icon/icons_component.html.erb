@@ -28,4 +28,12 @@
   <svg xmlns="http://www.w3.org/2000/svg" width=<%= @size%> height=<%= @size%> viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=<%= @stroke %> stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
 <% elsif @icon == 'text' %>
   <svg xmlns="http://www.w3.org/2000/svg" width=<%= @size%> height=<%= @size%> viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=<%= @stroke %> stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-text"><path d="M17 6.1H3"/><path d="M21 12.1H3"/><path d="M15.1 18H3"/></svg>
+<% elsif @icon == 'eye' %>
+  <svg xmlns="http://www.w3.org/2000/svg" width=<%= @size%> height=<%= @size%> viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=<%= @stroke %> stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+<% elsif @icon == 'close' %>
+  <svg xmlns="http://www.w3.org/2000/svg" width=<%= @size%> height=<%= @size%> viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=<%= @stroke %> stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+<% elsif @icon == 'arrow-up'%>
+  <svg xmlns="http://www.w3.org/2000/svg" width=<%= @size%> height=<%= @size%> viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=<%= @stroke %> stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-to-line"><path d="M5 3h14"/><path d="m18 13-6-6-6 6"/><path d="M12 7v14"/></svg>
+<% elsif @icon == 'arrow-down' %>
+  <svg xmlns="http://www.w3.org/2000/svg" width=<%= @size%> height=<%= @size%> viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=<%= @stroke %> stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down-to-line"><path d="M12 17V3"/><path d="m6 11 6 6 6-6"/><path d="M19 21H5"/></svg>
 <% end %>

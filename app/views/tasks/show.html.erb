@@ -1,0 +1,70 @@
+<%= turbo_frame_tag "task_modal" do%>
+  <div data-controller="modal"  class=" flex justify-center items-center absolute top-0 left-0 z-50 w-screen h-screen bg-stone-700 bg-opacity-30">
+    <div class="max-h-[600px] h-full w-full max-w-[750px] rounded-lg bg-white p-8 drop-shadow-lg">
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center justify-between">
+          <div class="flex gap-4 items-center text-slate-800">
+            <%= link_to tasks_path, data:{action:"click->modal#hide"} do%>
+              <%= render Icon::IconsComponent.new(icon:'close', stroke:2.5,size:32) %>
+            <% end %>
+            <h1 class="border-0 w-full font-semibold text-3xl  focus:ring-0 p-0"><%= @task.title %></h1>
+          </div>
+          <div>
+            <div class="text-slate-700 hover:bg-slate-200 rounded-md">
+              <%= link_to edit_task_path(@task), data: {turbo_frame:"task_modal"},class:" p-1 flex gap-2 items-center" do%>
+                <%= render (Icon::IconsComponent.new(icon:'edit', size:14)) %>
+                <p class="text-xs font-medium">Editar</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3">
+          <div class="flex gap-8 items-center">
+            <div class="flex items-center">
+              <span class="inline-block w-32 text-sm text-stone-500">Status:</span>
+              <div class="flex items-center gap-2 badge text-slate-800">
+                <%= render Icon::IconsComponent.new(icon:'status', stroke:2.5) %>
+                <span class="font-semibold"><%= @task.status %></span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center text-stone-500 text-sm">
+            <span class="inline-block w-32">Criado em:</span>
+            <div class="flex items-center gap-2 text-xs text-slate-800">
+              <%= render Icon::IconsComponent.new(icon:'date', stroke:2.3) %>
+              <span class="font-semibold"><%= @task.created_at%></span>
+            </div>
+          </div>
+          <div class="flex items-center text-stone-500 text-sm">
+            <span class="inline-block w-32">Expira em:</span>
+            <div class="flex items-center gap-2 text-xs py-1 text-slate-800">
+              <% if @task.due_date.nil? %>
+                <span class="font-semibold">
+                  <%= "Não informado" %>
+                </span>
+              <% else %>
+                <%= render Icon::IconsComponent.new(icon:'date', stroke:2.3) %>
+                <span class="inline-block font-semibold ">
+                  <%= @task.due_date%>
+                </span>
+              <% end %>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-2 items-center ">
+          <%= render Icon::IconsComponent.new(icon:"text") %>
+          <span class="font-medium text-slate-800">Descrição</span>
+        </div>
+        <div class="px-6 py-5 ml-6 bg-stone-100 bg-opacity-70 rounded-lg">
+          <% if @task.description.blank? %>
+            <p class="w-[calc(100%-1.5rem)] bg-transparent border-none resize-none text-sm focus:ring-0  text-slate-500">Descreva sua tarefa aqui...</p>
+          <% else %>
+            <p class="w-[calc(100%-1.5rem)] bg-transparent border-none resize-none text-sm focus:ring-0"><%= @task.description %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

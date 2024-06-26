@@ -1,0 +1,13 @@
+<%= form_with(model:@task, url:task_create_small_path, data:{turbo_method: :post, turbo_stream: true}, class:"p-0 flex gap-2 items-center bg-slate-50") do |f|%>
+  <%= f.hidden_field :status, value:@task.status %>
+  <% if @task.errors.any?%>
+    <%= f.text_field :title,class:"border border-red-400 focus:border-red-400 focus:ring-0 py-[2px] px-2 w-full text-sm rounded-md  bg-transparent", placeholder:"Título para a tarefa..."%>
+  <% else %>
+    <%= f.text_field :title, class:"border-none py-[2px] px-2 w-full text-sm focus:ring-0 bg-transparent", placeholder:"Título para a tarefa..."%>
+  <% end %>
+  <%= button_tag do %>
+    <div class=" flex justify-center items-center gap-2 bg-slate-700 p-1 text-white text-sm rounded-lg">
+      <%= render (Icon::IconsComponent.new(icon:'plus',stroke:2.8)) %>
+    </div>
+  <% end %>
+<% end %>

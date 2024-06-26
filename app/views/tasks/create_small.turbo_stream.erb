@@ -1,0 +1,9 @@
+<%= turbo_stream.append "#{@task.status}", locals: { task: @task } do%>
+  <%= render Task::TaskListItemComponent.new(task:@task) %>
+<% end %>
+<%= turbo_stream.replace "btt_#{@task.status}", locals: { task: @task } do%>
+  <%= render Task::NewItemDropdownComponent.new(task_status:@task.status) %>
+<% end %>
+<%= turbo_stream.replace "counter_#{@task.status}", locals: {task_counter:@task_counter} do%>
+  <span class="block py-[2px] px-[6px]  rounded-full bg-stone-300 font-semibold text-slate-700" id=<%= "counter_#{@task.status}" %>><%= @task_counter %></span>
+<% end %>
